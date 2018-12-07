@@ -143,7 +143,8 @@ namespace BLINDED_AM_ME{
 			victim.GetComponent<MeshFilter>().mesh = left_HalfMesh;
 
 			GameObject leftSideObj = victim;
-			leftSideObj.GetComponent<CapsuleCollider>().enabled = false;
+			if(leftSideObj.GetComponent<CapsuleCollider>())
+				leftSideObj.GetComponent<CapsuleCollider>().enabled = false;
 
 			GameObject rightSideObj = new GameObject("right side", typeof(MeshFilter), typeof(MeshRenderer));
 			// aau
