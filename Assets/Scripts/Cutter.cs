@@ -6,6 +6,8 @@ public class Cutter : MonoBehaviour {
 
 	public Material capMaterial;
 
+	public BaguettePercentage baguettePercentage;
+
 	public float[] infoBaguette = new float[2];
 	// Use this for initialization
 	void Start () {
@@ -22,6 +24,7 @@ public class Cutter : MonoBehaviour {
 
 				infoBaguette = InfoBaguette(transform.position, victim.transform.position);
 				print("LeftSide: " + infoBaguette[0] + " RightSide: " + infoBaguette[1]);
+				baguettePercentage.percentageDisplay(infoBaguette);
 				GameObject[] pieces = BLINDED_AM_ME.MeshCut.Cut(victim, transform.position, -transform.forward, capMaterial);
 
 				if(!pieces[1].GetComponent<Rigidbody>())
