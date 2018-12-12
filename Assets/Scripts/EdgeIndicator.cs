@@ -15,14 +15,14 @@ public class EdgeIndicator : MonoBehaviour
     {
         GameObject leftIndicator = Instantiate(indicatorGameObject);
         leftIndicator.transform.SetParent(gameObject.transform);
-		leftIndicator.transform.localRotation = Quaternion.Euler(0,90,-90);
-        leftIndicator.transform.localPosition = new Vector3(0, 1, 0);
+        leftIndicator.transform.localRotation = Quaternion.Euler(0, 45, -90);
+        leftIndicator.transform.localPosition = new Vector3(-0.5f, 0.95f, -0.7f);
         leftIndicator.transform.localScale = new Vector3(2, 10, 10);
 
         GameObject rightIndicator = Instantiate(indicatorGameObject);
         rightIndicator.transform.SetParent(gameObject.transform);
-		rightIndicator.transform.localRotation = Quaternion.Euler(0,90,-90);
-        rightIndicator.transform.localPosition = new Vector3(0, -1, 0);
+        rightIndicator.transform.localRotation = Quaternion.Euler(0, 45, -90);
+        rightIndicator.transform.localPosition = new Vector3(-0.5f, -0.95f, -0.7f);
         rightIndicator.transform.localScale = new Vector3(2, 10, 10);
 
         leftTimer = 2f;

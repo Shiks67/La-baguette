@@ -36,8 +36,9 @@ public class RayCaster : MonoBehaviour
         gazeRay = mainCamera.ViewportPointToRay(viewportPoint);
         gazeHits = Physics.RaycastAll(gazeRay);
 
-        headRay = new Ray(mainCamera.transform.position,
-         mainCamera.transform.rotation * Vector3.forward);
+        Debug.DrawRay(gameObject.transform.position, gameObject.transform.rotation * Vector3.forward * 100.0f, Color.red); 
+        headRay = new Ray(gameObject.transform.position,
+         gameObject.transform.rotation * Vector3.forward);
         headHits = Physics.RaycastAll(headRay);
     }
 }
