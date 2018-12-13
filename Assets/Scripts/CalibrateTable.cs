@@ -18,10 +18,10 @@ public class CalibrateTable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.LeftHand))
+        if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.RightHand))
         {
-            table.transform.localPosition = new Vector3(gameObject.transform.position.x,
-            table.transform.localPosition.y, gameObject.transform.position.z + tablePlaneBounds.max.y);
+            table.transform.position = new Vector3(gameObject.transform.position.x,
+            gameObject.transform.position.y, gameObject.transform.position.z + tablePlaneBounds.max.y);
         }
     }
 }

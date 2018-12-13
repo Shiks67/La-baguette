@@ -18,16 +18,18 @@ public class PrismV2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.position = InputTracking.GetLocalPosition(XRNode.CenterEye);
+
         if (!isPrismON)
             return;
 
         if (float.TryParse(prismOffset.text, out offset))
         {
-            transform.position = -InputTracking.GetLocalPosition(XRNode.Head);
-            //transform.rotation = Quaternion.Inverse(InputTracking.GetLocalRotation(XRNode.CenterEye));
-            transform.eulerAngles = new Vector3(InputTracking.GetLocalRotation(XRNode.Head).eulerAngles.x,
-            InputTracking.GetLocalRotation(XRNode.Head).eulerAngles.y + offset,
-            InputTracking.GetLocalRotation(XRNode.Head).eulerAngles.z);
+            gameObject.transform.eulerAngles = new Vector3(0, offset, 0);
+        }
+        else
+        {
+            gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
         }
     }
 
@@ -39,5 +41,6 @@ public class PrismV2 : MonoBehaviour
     public void PrismOFF()
     {
         isPrismON = false;
+        gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
     }
 }

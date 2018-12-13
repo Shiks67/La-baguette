@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class RayCaster : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class RayCaster : MonoBehaviour
         PupilData.calculateMovingAverage = true;
         mainCamera = Camera.main;
 
+        InputTracking.disablePositionalTracking = true;
+        transform.localPosition = new Vector3(0, 0, 0);
+
         if (PupilTools.IsConnected)
             PupilGazeTracker.Instance.StartVisualizingGaze();
     }
@@ -36,7 +40,7 @@ public class RayCaster : MonoBehaviour
         gazeRay = mainCamera.ViewportPointToRay(viewportPoint);
         gazeHits = Physics.RaycastAll(gazeRay);
 
-        Debug.DrawRay(gameObject.transform.position, gameObject.transform.rotation * Vector3.forward * 100.0f, Color.red); 
+        Debug.DrawRay(gameObject.transform.position, gameObject.transform.rotation * Vector3.forward * 100.0f, Color.red);
         headRay = new Ray(gameObject.transform.position,
          gameObject.transform.rotation * Vector3.forward);
         headHits = Physics.RaycastAll(headRay);
