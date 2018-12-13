@@ -23,7 +23,7 @@ public class PositionData : MonoBehaviour
             RaycastHit hit = RayCaster.headHits[i];
             if (hit.collider.gameObject.name == "BaguetteCollider")
             {
-                headPosList.Add(hit.collider.gameObject.transform.InverseTransformPoint(hit.point));
+                headPosList.Add(hit.collider.gameObject.transform.parent.transform.InverseTransformPoint(hit.point));
                 // print("head : " + hit.collider.gameObject.transform.parent.transform.InverseTransformPoint(hit.point));
             }
         }
@@ -33,7 +33,7 @@ public class PositionData : MonoBehaviour
             RaycastHit hit = RayCaster.gazeHits[i];
             if (hit.collider.gameObject.name == "BaguetteCollider")
             {
-                gazePosList.Add(hit.collider.gameObject.transform.InverseTransformPoint(hit.point));
+                gazePosList.Add(hit.collider.gameObject.transform.parent.transform.InverseTransformPoint(hit.point));
             }
         }
 
