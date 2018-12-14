@@ -127,7 +127,6 @@ public class Window_Graph : MonoBehaviour {
                     headPosList.Add(x);
                 }
             }
-            print(x);
             //Gaze Position soonTM
             for(int i = 0; i < valueList.Count; i++){
                 double range = i * .5f - 5;
