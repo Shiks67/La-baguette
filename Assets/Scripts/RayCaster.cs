@@ -10,15 +10,21 @@ public class RayCaster : MonoBehaviour
     private Vector2 gazePointCenter;
     private Ray gazeRay;
     private Ray headRay;
+    private LayerMask posLayer;
 
     public static RaycastHit[] headHits;
     public static RaycastHit[] gazeHits;
+
+    public static RaycastHit gazePoint;
+
+    public static RaycastHit headPoint;
 
     // Use this for initialization
     void Start()
     {
         PupilData.calculateMovingAverage = true;
         mainCamera = Camera.main;
+        posLayer = LayerMask.GetMask("PosLayer");
 
         if (PupilTools.IsConnected)
             PupilGazeTracker.Instance.StartVisualizingGaze();
@@ -35,9 +41,13 @@ public class RayCaster : MonoBehaviour
         }
         gazeRay = mainCamera.ViewportPointToRay(viewportPoint);
         gazeHits = Physics.RaycastAll(gazeRay);
+        Physics.Raycast(gazeRay, out gazePoint, 10f, posLayer);
 
         headRay = new Ray(mainCamera.transform.position,
          mainCamera.transform.rotation * Vector3.forward);
+        Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.rotation * Vector3.forward);
         headHits = Physics.RaycastAll(headRay);
+        Physics.Raycast(headRay, out headPoint, 10f, posLayer);
     }
+
 }
