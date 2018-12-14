@@ -31,7 +31,6 @@ public class PrismCamera : MonoBehaviour
             return;
         }
 
-
         if (float.TryParse(prismOffset.text, out offset))
             cameraParent.transform.rotation = Quaternion.Euler(new Vector3(0, offset, 0));
     }
