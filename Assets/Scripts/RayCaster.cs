@@ -16,10 +16,6 @@ public class RayCaster : MonoBehaviour
     public static RaycastHit[] headHits;
     public static RaycastHit[] gazeHits;
 
-    public static RaycastHit gazePoint;
-
-    public static RaycastHit headPoint;
-
     // Use this for initialization
     void Start()
     {
@@ -45,13 +41,11 @@ public class RayCaster : MonoBehaviour
         }
         gazeRay = mainCamera.ViewportPointToRay(viewportPoint);
         gazeHits = Physics.RaycastAll(gazeRay);
-        Physics.Raycast(gazeRay, out gazePoint, 10f, posLayer);
 
         Debug.DrawRay(gameObject.transform.position, gameObject.transform.rotation * Vector3.forward * 100.0f, Color.red);
         headRay = new Ray(gameObject.transform.position,
          gameObject.transform.rotation * Vector3.forward);
         headHits = Physics.RaycastAll(headRay);
-        Physics.Raycast(headRay, out headPoint, 10f, posLayer);
     }
 
 }

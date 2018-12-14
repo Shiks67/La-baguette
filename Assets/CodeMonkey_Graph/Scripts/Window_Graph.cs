@@ -19,7 +19,6 @@ using CodeMonkey.Utils;
 
 public class Window_Graph : MonoBehaviour {
 
-    public Transform posPlane;
     private static Window_Graph instance;
 
     [SerializeField] private Sprite dotSprite;
@@ -42,6 +41,10 @@ public class Window_Graph : MonoBehaviour {
     private Func<float, string> getAxisLabelY;
     private float xSize;
     private bool startYScaleAtZero;
+    private List<double> headPosList = new List<double>();
+    private List<double> gazePosList = new List<double>();
+    public static List<List<double>> savedHeadPosList = new List<List<double>>();
+    public static List<List<double>> savedGazePosList = new List<List<double>>();
 
     private void Awake() {
         instance = this;
@@ -112,9 +115,20 @@ public class Window_Graph : MonoBehaviour {
             index = (index + 1) % valueList.Count;
         }, .1f);
         FunctionPeriodic.Create(() => {
-            //print(posPlane.InverseTransformPoint(RayCaster.headPoint.point));
-			double x = Math.Round(posPlane.InverseTransformPoint(RayCaster.headPoint.point).x,2);
+			double x = 0;
+            for (int i = 0; i < RayCaster.headHits.Length; i++)
+            {
+                RaycastHit hit = RayCaster.headHits[i];
+                if (hit.collider.gameObject.name == "BaguetteCollider")
+                {
+                    x = Math.Round(
+                        hit.collider.gameObject.transform.parent.transform.
+                        InverseTransformPoint(hit.point).y * 5, 2) * -1;
+                    headPosList.Add(x);
+                }
+            }
             print(x);
+            //Gaze Position soonTM
             for(int i = 0; i < valueList.Count; i++){
                 double range = i * .5f - 5;
                 double rangePlusOne = (i +1) *0.5f - 5;
@@ -134,7 +148,7 @@ public class Window_Graph : MonoBehaviour {
             }
             //int index = UnityEngine.Random.Range(0, valueList.Count);
             UpdateValue(index, valueList[index] + 1);
-        }, 1.0f);
+        }, 0.2f);
     }
 
     public static void ShowTooltip_Static(string tooltipText, Vector2 anchoredPosition) {
@@ -608,6 +622,17 @@ public class Window_Graph : MonoBehaviour {
 
         }
 
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            savedHeadPosList.Add(new List<double>(headPosList));
+            savedGazePosList.Add(new List<double>(gazePosList));
+            headPosList.Clear();
+            gazePosList.Clear();
+        }
     }
 
 }
