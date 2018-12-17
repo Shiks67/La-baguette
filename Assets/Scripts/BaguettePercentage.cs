@@ -15,15 +15,10 @@ public class BaguettePercentage : MonoBehaviour {
 		leftSide.enabled = false;
 		rightSide.enabled = false;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	public void percentageDisplay(float[] percentage){
-		String leftPercentage = Math.Round(percentage[0],2).ToString() + " %";
-		String rightPercentage = Math.Round(percentage[1],2).ToString() + " %";
+		string leftPercentage = Math.Round(percentage[0],2).ToString() + " %";
+		string rightPercentage = Math.Round(percentage[1],2).ToString() + " %";
 
 		leftSide.text = leftPercentage;
 		rightSide.text = rightPercentage;

@@ -5,14 +5,7 @@ using UnityEngine;
 public class Cutter : MonoBehaviour {
 
 	public Material capMaterial;
-
-	public BaguettePercentage baguettePercentage;
-
-	public float[] infoBaguette = new float[2];
-	// Use this for initialization
-	void Start () {
-
-	}
+	private float[] infoBaguette = new float[2];
 	
 	void Update(){
 		//if(Input.GetMouseButtonDown(0)){
@@ -25,7 +18,7 @@ public class Cutter : MonoBehaviour {
             if (victim.name == "Baguette(Clone)")
             {
                 infoBaguette = InfoBaguette(transform.position, victim.transform.position);
-                baguettePercentage.percentageDisplay(infoBaguette);
+                victim.transform.GetChild(0).gameObject.GetComponent<BaguettePercentage>().percentageDisplay(infoBaguette);
                 GameObject[] pieces = BLINDED_AM_ME.MeshCut.Cut(victim, transform.position, -transform.forward, capMaterial);
 
                 if (!pieces[1].GetComponent<Rigidbody>())
@@ -33,11 +26,7 @@ public class Cutter : MonoBehaviour {
 
                 pieces[1].GetComponent<Rigidbody>().useGravity = false;
             }
-
-            //Destroy(pieces[1], 1);
         }
-
-		//}
 	}
 
 	void OnDrawGizmosSelected() {

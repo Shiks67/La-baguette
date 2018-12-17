@@ -15,7 +15,6 @@ public class BaguetteManager : MonoBehaviour
     void Start()
     {
         Center = gameObject.transform.localPosition;
-        // spawnArea = new Vector3(1, 0.5f, -0.108f);
         spawnArea = gameObject.GetComponent<BoxCollider>().bounds;
         isBaguette = false;
     }
@@ -40,6 +39,7 @@ public class BaguetteManager : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
         {
             Destroy(gameObject.transform.GetChild(0).gameObject);
+            Destroy(gameObject.transform.GetChild(1).gameObject);
             isBaguette = false;
         }
     }
