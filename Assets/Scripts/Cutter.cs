@@ -22,7 +22,7 @@ public class Cutter : MonoBehaviour {
         {
 
             GameObject victim = hit.collider.gameObject;
-            if (victim.name == "Baguette")
+            if (victim.name == "Baguette(Clone)")
             {
                 infoBaguette = InfoBaguette(transform.position, victim.transform.position);
                 baguettePercentage.percentageDisplay(infoBaguette);

@@ -10,8 +10,8 @@ public class BaguettePercentage : MonoBehaviour {
 	private Text rightSide;
 	// Use this for initialization
 	void Start () {
-		leftSide = transform.Find("LeftSide").GetComponent<Text>();
-		rightSide = transform.Find("RightSide").GetComponent<Text>();
+		leftSide = transform.GetChild(0).gameObject.GetComponent<Text>();
+		rightSide = transform.GetChild(1).gameObject.GetComponent<Text>();
 		leftSide.enabled = false;
 		rightSide.enabled = false;
 	}
