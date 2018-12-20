@@ -11,7 +11,7 @@ public class RayCaster : MonoBehaviour
     private Vector2 gazePointCenter;
     private Ray gazeRay;
     private Ray headRay;
-    private LayerMask posLayer;
+    private LineRenderer heading;
 
     public static RaycastHit[] headHits;
     public static RaycastHit[] gazeHits;
@@ -21,13 +21,20 @@ public class RayCaster : MonoBehaviour
     {
         PupilData.calculateMovingAverage = true;
         mainCamera = Camera.main;
-        posLayer = LayerMask.GetMask("PosLayer");
+        heading = gameObject.GetComponent<LineRenderer>();
 
         InputTracking.disablePositionalTracking = true;
         transform.localPosition = new Vector3(0, 0, 0);
+    }
 
+    void OnEnable()
+    {
         if (PupilTools.IsConnected)
+        {
             PupilGazeTracker.Instance.StartVisualizingGaze();
+            //PupilTools.IsGazing = true;
+            //PupilTools.SubscribeTo ("gaze");
+        }
     }
 
     // Update is called once per frame
@@ -41,6 +48,20 @@ public class RayCaster : MonoBehaviour
         }
         gazeRay = mainCamera.ViewportPointToRay(viewportPoint);
         gazeHits = Physics.RaycastAll(gazeRay);
+
+        if (gameObject.GetComponent<LineRenderer>().enabled)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(gazeRay, out hit))
+            {
+                heading.SetPosition(1, hit.point);
+                hit.point = transform.InverseTransformPoint(hit.point);
+            }
+            else
+            {
+                heading.SetPosition(1, gazeRay.origin + gazeRay.direction * 50f);
+            }
+        }
 
         Debug.DrawRay(gameObject.transform.position, gameObject.transform.rotation * Vector3.forward * 100.0f, Color.red);
         headRay = new Ray(gameObject.transform.position,

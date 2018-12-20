@@ -80,7 +80,7 @@ public class PupilManager : MonoBehaviour
 
 	void ShowCalibrate()
 	{
-		calibrationText.text = "Press 'c' to start calibration.\nPress 'd' to remove the eyes squares";
+		calibrationText.text = "Press 'c' to start calibration";
 	}
 
 	void OnCalibtaionStarted()

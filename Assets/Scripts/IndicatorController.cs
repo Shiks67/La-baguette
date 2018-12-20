@@ -14,9 +14,9 @@ public class IndicatorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < RayCaster.headHits.Length; i++)
+        for (int i = 0; i < RayCaster.gazeHits.Length; i++)
         {
-            RaycastHit hit = RayCaster.headHits[i];
+            RaycastHit hit = RayCaster.gazeHits[i];
             if (hit.collider.gameObject == gameObject.transform.GetChild(0).gameObject)
             {
                 gameObject.transform.localScale =
