@@ -10,13 +10,13 @@ public class KnifeMirror : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position = new Vector3(LeftKnife.transform.position.x * -1, 
+        var mirrorX = LeftKnife.transform.position.x - 
+        ((LeftKnife.transform.position.x - Camera.main.transform.position.x) * 2);
+        gameObject.transform.position = new Vector3(mirrorX,
         LeftKnife.transform.position.y, LeftKnife.transform.position.z);
-        
-        gameObject.transform.rotation = new Quaternion(LeftKnife.transform.rotation.x,
-        LeftKnife.transform.rotation.y * -1,
-        LeftKnife.transform.rotation.z * -1,
-        LeftKnife.transform.rotation.w);
+
+        //mirroring rotation
+        gameObject.transform.eulerAngles = LeftKnife.transform.eulerAngles;
     }
 
     void OnEnable()
