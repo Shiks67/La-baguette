@@ -25,7 +25,7 @@ public class BaguetteManager : MonoBehaviour
             baguette.transform.SetParent(gameObject.transform);
             baguette.transform.localPosition =
             new Vector3(
-                Random.Range(-8f, 8f),
+                Random.Range(-0.8f, 0.8f),
                 Random.Range(-0.40f, 0.45f),
                 -0.108f
             );
