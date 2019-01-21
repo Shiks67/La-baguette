@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4883464677249028}
   - component: {fileID: 33035955087217488}
   - component: {fileID: 23796422985393614}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: MarkerObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4003686997055484}
   - component: {fileID: 33587596784184336}
   - component: {fileID: 23108256815177222}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: MarkerEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}

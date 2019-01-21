@@ -1,26 +1,14 @@
-﻿/* 
-    ------------------- Code Monkey -------------------
-
-    Thank you for downloading this package
-    I hope you find it useful in your projects
-    If you have any questions let me know
-    Cheers!
-
-               unitycodemonkey.com
-    --------------------------------------------------
- */
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CodeMonkey.Utils;
 
-public class Window_Graph : MonoBehaviour
+public class GazePositionGraph : MonoBehaviour
 {
 
-    private static Window_Graph instance;
+    private static GazePositionGraph instance;
 
     [SerializeField] private Sprite dotSprite;
     private RectTransform graphContainer;
@@ -43,8 +31,8 @@ public class Window_Graph : MonoBehaviour
     private float xSize;
     private double abscisse = 5.5f;
     private bool startYScaleAtZero;
-    private List<double> headPosList = new List<double>();
-    public static List<List<double>> savedHeadPosList = new List<List<double>>();
+    private List<double> gazePosList = new List<double>();
+    public static List<List<double>> savedGazePosList = new List<List<double>>();
 
     private void Awake()
     {
@@ -122,9 +110,9 @@ public class Window_Graph : MonoBehaviour
         FunctionPeriodic.Create(() =>
         {
             double x = 0;
-            for (int i = 0; i < RayCaster.headHits.Length; i++)
+            for (int i = 0; i < RayCaster.gazeHits.Length; i++)
             {
-                RaycastHit hit = RayCaster.headHits[i];
+                RaycastHit hit = RayCaster.gazeHits[i];
                 if (hit.collider.gameObject.name == "BaguetteCollider")
                 {
                     x = Math.Round(
@@ -133,7 +121,7 @@ public class Window_Graph : MonoBehaviour
                     print(Math.Round(
                     hit.collider.gameObject.transform.parent.transform.
                     InverseTransformPoint(hit.point).y * 5, 2) * -1);
-                    headPosList.Add(x);
+                    gazePosList.Add(x);
                     for (int j = 0; j < valueList.Count; j++)
                     {
                         double range = j * .5f - abscisse;
@@ -714,8 +702,8 @@ public class Window_Graph : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            savedHeadPosList.Add(new List<double>(headPosList));
-            headPosList.Clear();
+            savedGazePosList.Add(new List<double>(gazePosList));
+            gazePosList.Clear();
         }
     }
 

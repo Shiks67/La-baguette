@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114351539827870162}
   - component: {fileID: 114804587754536118}
   m_Layer: 5
-  m_Name: CanvasGraphs
+  m_Name: GazePositionGraph
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -669,7 +669,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d0de66fe3e73f48b82a8b624f4635f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posPlane: {fileID: 0}
   dotSprite: {fileID: 21300000, guid: ef275adbab99ec841b5fb0dbc14a043d, type: 3}
 --- !u!114 &114259848346571616
 MonoBehaviour:
