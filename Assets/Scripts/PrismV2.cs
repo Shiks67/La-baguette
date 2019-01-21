@@ -9,22 +9,19 @@ public class PrismV2 : MonoBehaviour
     private bool isPrismON = false;
     private float offset;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
+        //change the position with the headset tracked position
         transform.position = InputTracking.GetLocalPosition(XRNode.CenterEye);
 
         if (!isPrismON)
             return;
 
+        //tryparse the number entered in the HUD
         if (float.TryParse(prismOffset.text, out offset))
         {
+            //add the offset to the camera
             gameObject.transform.eulerAngles = new Vector3(0, offset, 0);
         }
         else
@@ -33,14 +30,14 @@ public class PrismV2 : MonoBehaviour
         }
     }
 
-    public void PrismON()
+    /// <summary>
+    /// Change current state of bool isPrimON
+    /// if it's false, reset camera's rotation
+    /// </summary>
+    public void PrismONOFF()
     {
         isPrismON = true;
-    }
-
-    public void PrismOFF()
-    {
-        isPrismON = false;
-        gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+        if (!isPrismON)
+            gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
     }
 }

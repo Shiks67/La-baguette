@@ -14,6 +14,8 @@ public class IndicatorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //decrease scale of the indicator from the baguette,
+        //once they're small enough, destroy them
         for (int i = 0; i < RayCaster.gazeHits.Length; i++)
         {
             RaycastHit hit = RayCaster.gazeHits[i];

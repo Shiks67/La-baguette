@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 public class Cutter : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Cutter : MonoBehaviour
 
     void Update()
     {
+        //if we are using the left knife, change the cuting transform
         if (gameObject.name == "LeftKninfe")
             cutPosition = transform.parent.transform.position;
         else
@@ -19,6 +21,7 @@ public class Cutter : MonoBehaviour
         RaycastHit hit;
         Vector3 DirZ = new Vector3(-transform.forward.z, transform.forward.y, transform.forward.x);
         if (Physics.Raycast(transform.position + (transform.up * 0.17f), transform.right, out hit, 0.05f))
+        // && SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.LeftHand))
         {
             GameObject victim = hit.collider.gameObject;
             if (victim.name == "Baguette(Clone)")

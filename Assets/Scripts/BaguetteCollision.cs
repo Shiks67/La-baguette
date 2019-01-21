@@ -15,7 +15,6 @@ public class BaguetteCollision : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter(UnityEngine.Collision collision){
-		print("Romain");
 		BaguetteCut.Cut(collision.transform, transform.position);
 	}
 }

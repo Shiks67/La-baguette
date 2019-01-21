@@ -12,6 +12,8 @@ public class CalibrateTable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //by pressing the pinch from the right controller change table's position to the controller's one, 
+        //and rotate it so it's in front of the user
         if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.RightHand))
         {
             table.transform.position = gameObject.transform.position;

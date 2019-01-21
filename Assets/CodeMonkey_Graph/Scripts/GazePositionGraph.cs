@@ -118,9 +118,6 @@ public class GazePositionGraph : MonoBehaviour
                     x = Math.Round(
                         hit.collider.gameObject.transform.parent.transform.
                         InverseTransformPoint(hit.point).y * 5, 2) * -1;
-                    print(Math.Round(
-                    hit.collider.gameObject.transform.parent.transform.
-                    InverseTransformPoint(hit.point).y * 5, 2) * -1);
                     gazePosList.Add(x);
                     for (int j = 0; j < valueList.Count; j++)
                     {

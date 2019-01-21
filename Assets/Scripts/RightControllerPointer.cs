@@ -7,14 +7,14 @@ public class RightControllerPointer : MonoBehaviour
 
     private LineRenderer pointer;
 
-    // Use this for initialization
+    //Create laser from right controller
     void Start()
     {
         pointer = gameObject.GetComponent<LineRenderer>();
         pointer.SetPosition(0, gameObject.transform.position);
     }
 
-    // Update is called once per frame
+    // Update laser pointer
     void Update()
     {
         pointer.SetPosition(0, gameObject.transform.position);
