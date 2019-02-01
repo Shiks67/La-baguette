@@ -29,6 +29,7 @@ public class KnifeMirror : MonoBehaviour
         false;
         LeftKnife.transform.GetComponent<MeshRenderer>().enabled =
         false;
+        LeftKnife.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -40,5 +41,6 @@ public class KnifeMirror : MonoBehaviour
         true;
         LeftKnife.transform.GetComponent<MeshRenderer>().enabled =
         true;
+        LeftKnife.transform.GetChild(0).gameObject.SetActive(true);
     }
 }
