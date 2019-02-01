@@ -24,6 +24,7 @@ public class RayCaster : MonoBehaviour
     {
         PupilData.calculateMovingAverage = true;
         mainCamera = Camera.main;
+        //linerenderer
         heading = gameObject.GetComponent<LineRenderer>();
 
         InputTracking.disablePositionalTracking = true;

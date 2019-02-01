@@ -5,19 +5,21 @@ using Valve.VR;
 
 public class CalibrateTable : MonoBehaviour
 {
-
-    public GameObject table;
-    private Bounds tablePlaneBounds;
+    public GameObject prismCamera;
+    public GameObject mainCamera;
 
     // Update is called once per frame
-    void Update()
+    public void Calibrate()
     {
-        //by pressing the pinch from the right controller change table's position to the controller's one, 
-        //and rotate it so it's in front of the user
-        if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.RightHand))
-        {
-            table.transform.position = gameObject.transform.position;
-            table.transform.eulerAngles = new Vector3(90, gameObject.transform.eulerAngles.y, 0);
-        }
+        Vector3 cameraPos = prismCamera.transform.position;
+        Vector3 cameraDirection = mainCamera.transform.forward;
+        Vector3 cameraAngles = mainCamera.transform.eulerAngles;
+        float spawnDistance = .5f;
+
+        gameObject.transform.position = cameraPos + cameraDirection * spawnDistance;
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x,
+        .7f,
+        gameObject.transform.position.z);
+        gameObject.transform.eulerAngles = new Vector3(90, cameraAngles.y, cameraAngles.z);
     }
 }
