@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Only for tests
+/// </summary>
 public class RayCastF : MonoBehaviour
 {
 
@@ -17,7 +20,7 @@ public class RayCastF : MonoBehaviour
         heading = gameObject.GetComponent<LineRenderer>();
     }
 
-    // Update is called once per frame
+    // Raycast forward from camera and move the camera with ZQSD, easier for tests
     void Update()
     {
         if (Input.GetKey(KeyCode.Z))

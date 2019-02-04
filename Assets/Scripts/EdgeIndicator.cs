@@ -13,6 +13,8 @@ public class EdgeIndicator : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // Create right and left circle GO from prefab to the edges of the baguette
+
         GameObject leftIndicator = Instantiate(indicatorGameObject);
         leftIndicator.transform.SetParent(gameObject.transform);
         leftIndicator.transform.localRotation = Quaternion.Euler(0, 45, -90);
@@ -32,6 +34,9 @@ public class EdgeIndicator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //meant to always be looking at the user
+        //problem is that they just stretch
+
         // for (int i = 0; i < RayCaster.gazeHits.Length; i++)
         // {
         // 	RaycastHit hit = RayCaster.gazeHits[i];
