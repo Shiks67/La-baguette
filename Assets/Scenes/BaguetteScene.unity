@@ -1131,9 +1131,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!223 &384353339 stripped
 Canvas:
-  m_CorrespondingSourceObject: {fileID: 223652761713780116, guid: 9569a1cf761dcf84bb741b20eb1a0029,
+  m_CorrespondingSourceObject: {fileID: 223788001469432100, guid: b78fe9c9cf1387d4a941651cc92c8864,
     type: 2}
-  m_PrefabInternal: {fileID: 2070066079}
+  m_PrefabInternal: {fileID: 1147892970}
 --- !u!1 &389760754
 GameObject:
   m_ObjectHideFlags: 0
