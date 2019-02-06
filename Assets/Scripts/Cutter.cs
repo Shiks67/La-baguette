@@ -17,16 +17,16 @@ public class Cutter : MonoBehaviour
             cutPosition = transform.parent.transform.position;
         else
             cutPosition = transform.position;
-
+//&& SteamVR_Input._default.inActions.GrabPinch.GetState(SteamVR_Input_Sources.LeftHand)
         RaycastHit hit;
         Vector3 DirZ = new Vector3(-transform.forward.z, transform.forward.y, transform.forward.x);
-        if (Physics.Raycast(transform.position + (transform.up * 0.17f), transform.right, out hit, 0.05f) 
-        && SteamVR_Input._default.inActions.GrabPinch.GetState(SteamVR_Input_Sources.LeftHand))
+        if (Physics.Raycast(transform.position + (transform.up * 0.17f), transform.right, out hit, 0.05f)
+        )
         {
             GameObject victim = hit.collider.gameObject;
             if (victim.name == "Baguette(Clone)")
             {
-                infoBaguette = InfoBaguette(transform.position, victim.transform.position);
+                infoBaguette = InfoBaguette(hit.point, victim.transform.position);
                 victim.transform.GetChild(0).gameObject.GetComponent<BaguettePercentage>().percentageDisplay(infoBaguette);
                 GameObject[] pieces = BLINDED_AM_ME.MeshCut.Cut(victim, cutPosition, -transform.forward, capMaterial);
 
@@ -52,11 +52,12 @@ public class Cutter : MonoBehaviour
 
     }
 
-    public float[] InfoBaguette(Vector3 knifePosistion, Vector3 baguettePosition)
+    public float[] InfoBaguette(Vector3 knifePosition, Vector3 baguettePosition)
     {
         float[] leftAndRight = new float[2];
-        float x = knifePosistion.x - baguettePosition.x;
-        leftAndRight[0] = (0.5f + (0.5f * x / 0.6f)) * 100;
+        float x = knifePosition.x - baguettePosition.x;
+        float y =0 ;// knifePosition.y - baguettePosition.y;
+        leftAndRight[0] = (0.5f + (0.5f * (x + y) / 0.6f)) * 100;
         leftAndRight[1] = 100 - leftAndRight[0];
         return leftAndRight;
     }
