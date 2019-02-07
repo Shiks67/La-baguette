@@ -26,10 +26,14 @@ public class Cutter : MonoBehaviour
             GameObject victim = hit.collider.gameObject;
             if (victim.name == "Baguette(Clone)")
             {
-                infoBaguette = InfoBaguette(hit.point, victim.transform.position);
-                victim.transform.GetChild(0).gameObject.GetComponent<BaguettePercentage>().percentageDisplay(infoBaguette);
+                
+                print(victim.GetComponent<Renderer>().bounds.size);
+                float baguetteBoundsSize = victim.GetComponent<Renderer>().bounds.size.x;
                 GameObject[] pieces = BLINDED_AM_ME.MeshCut.Cut(victim, cutPosition, -transform.forward, capMaterial);
-
+                print(pieces[0].GetComponent<Renderer>().bounds.size);
+                float leftBoundsSize = pieces[0].GetComponent<Renderer>().bounds.size.x;
+                infoBaguette = InfoBaguette(baguetteBoundsSize, leftBoundsSize);
+                pieces[0].transform.GetChild(0).gameObject.GetComponent<BaguettePercentage>().percentageDisplay(infoBaguette);
                 if (!pieces[1].GetComponent<Rigidbody>())
                     pieces[1].AddComponent<Rigidbody>();
 
@@ -52,12 +56,10 @@ public class Cutter : MonoBehaviour
 
     }
 
-    public float[] InfoBaguette(Vector3 knifePosition, Vector3 baguettePosition)
+    public float[] InfoBaguette(float baguetteBoundsSizeX, float leftBoundsSizeX)
     {
         float[] leftAndRight = new float[2];
-        float x = knifePosition.x - baguettePosition.x;
-        float y =0 ;// knifePosition.y - baguettePosition.y;
-        leftAndRight[0] = (0.5f + (0.5f * (x + y) / 0.6f)) * 100;
+        leftAndRight[0] = (leftBoundsSizeX / baguetteBoundsSizeX) * 100 ;
         leftAndRight[1] = 100 - leftAndRight[0];
         return leftAndRight;
     }
