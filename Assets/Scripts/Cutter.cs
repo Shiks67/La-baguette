@@ -12,25 +12,18 @@ public class Cutter : MonoBehaviour
 
     void Update()
     {
-        //if we are using the left knife, change the cuting transform
-        if (gameObject.name == "LeftKninfe")
-            cutPosition = transform.parent.transform.position;
-        else
-            cutPosition = transform.position;
-//&& SteamVR_Input._default.inActions.GrabPinch.GetState(SteamVR_Input_Sources.LeftHand)
+        cutPosition = transform.position;
+
         RaycastHit hit;
         Vector3 DirZ = new Vector3(-transform.forward.z, transform.forward.y, transform.forward.x);
         if (Physics.Raycast(transform.position + (transform.up * 0.17f), transform.right, out hit, 0.05f)
-        )
+        && SteamVR_Input._default.inActions.GrabPinch.GetState(SteamVR_Input_Sources.LeftHand))
         {
             GameObject victim = hit.collider.gameObject;
             if (victim.name == "Baguette(Clone)")
             {
-                
-                print(victim.GetComponent<Renderer>().bounds.size);
                 float baguetteBoundsSize = victim.GetComponent<Renderer>().bounds.size.x;
                 GameObject[] pieces = BLINDED_AM_ME.MeshCut.Cut(victim, cutPosition, -transform.forward, capMaterial);
-                print(pieces[0].GetComponent<Renderer>().bounds.size);
                 float leftBoundsSize = pieces[0].GetComponent<Renderer>().bounds.size.x;
                 infoBaguette = InfoBaguette(baguetteBoundsSize, leftBoundsSize);
                 pieces[0].transform.GetChild(0).gameObject.GetComponent<BaguettePercentage>().percentageDisplay(infoBaguette);

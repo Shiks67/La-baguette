@@ -8,6 +8,8 @@ public class BaguetteManager : MonoBehaviour
     public GameObject spawnObject;
     private Vector3 Center;
 
+    private float timer;
+
     // Use this for initialization
     void Start()
     {
@@ -18,6 +20,8 @@ public class BaguetteManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //time to cut the baguette
+        timer += Time.deltaTime;
         //if there is no baguette we create one on the table
         if (!isBaguette)
         {
@@ -31,6 +35,7 @@ public class BaguetteManager : MonoBehaviour
             );
             baguette.transform.localEulerAngles = new Vector3(0, 0, 90);
             isBaguette = true;
+            timer = 0;
         }
     }
 
