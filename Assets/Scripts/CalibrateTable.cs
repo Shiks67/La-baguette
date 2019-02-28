@@ -14,11 +14,11 @@ public class CalibrateTable : MonoBehaviour
         Vector3 cameraPos = prismCamera.transform.position;
         Vector3 cameraDirection = mainCamera.transform.forward;
         Vector3 cameraAngles = mainCamera.transform.eulerAngles;
-        float spawnDistance = .5f;
+        float spawnDistance = .51f;
 
         gameObject.transform.position = cameraPos + cameraDirection * spawnDistance;
         gameObject.transform.position = new Vector3(gameObject.transform.position.x,
-        .7f,
+        .8f,
         gameObject.transform.position.z);
         gameObject.transform.eulerAngles = new Vector3(90, cameraAngles.y, cameraAngles.z);
     }

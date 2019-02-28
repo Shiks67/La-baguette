@@ -40,4 +40,18 @@ public class PrismV2 : MonoBehaviour
         if (!isPrismON)
             gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
     }
+
+    public void PrismOffsetZero_Toggle() {
+        gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+    }
+
+    public void PrismOffsetPlus15_Toggle() {
+        // Map inversely
+        gameObject.transform.eulerAngles = new Vector3(0, -20, 0);
+    }
+
+    public void PrismOffsetMinus15_Toggle() {
+        // Map inversely
+        gameObject.transform.eulerAngles = new Vector3(0, 20, 0);
+    }
 }
